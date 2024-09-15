@@ -1,11 +1,15 @@
+
+mod load;
 mod add;
+mod trainee;
+mod shuffle;
 //mod shuffle;
-//mod show;
 
 
 use std::collections::HashMap;
+use std::fs::File;
 use clap::{Parser, Subcommand};
-use serde_derive::{Deserialize, Serialize};
+use crate::trainee::Trainee;
 
 #[derive(Parser)]
 struct Cli {
@@ -13,13 +17,7 @@ struct Cli {
     subcommand: Commands,
 }
 
-//
-// #[derive(Serialize, Deserialize, Debug)]
-// struct Trainee {
-//     name: String,
-//     skill_value: u8
-// }
-//
+
 
 #[derive(clap::Subcommand)]
 enum Commands{
@@ -33,11 +31,11 @@ enum Commands{
 
 fn main() -> std::io::Result<()> {
     let args = Cli::parse();
-
-    let mut list: HashMap<String, u8> = HashMap::new();
+    let mut file = File::open("data.json")?;
+    let mut trainees: Vec<Trainee> = load::load(&file)?; // posession, load
 
     match args.subcommand {
-        Commands::Add {name, skill_value } => add::add(name, skill_value, &mut list)?,
+        Commands::Add {name, skill_value } => add::add(name, skill_value, &mut trainees, file)?//add::add(name, skill_value, &mut list, &mut file)?,
     //     Commands::Shuffle {} => print!("Shuffle !"),
     //     Commands::Purge {} => print!("Purge !")
     }
