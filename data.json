@@ -10,5 +10,37 @@
   {
     "name": "Alice Johnson",
     "skill_value": 75
+  },
+  {
+    "name": "jean",
+    "skill_value": 14
+  },
+  {
+    "name": "jean",
+    "skill_value": 14
+  },
+  {
+    "name": "jean",
+    "skill_value": 14
+  },
+  {
+    "name": "alphonse",
+    "skill_value": 41
+  },
+  {
+    "name": "alphonse",
+    "skill_value": 41
+  },
+  {
+    "name": "alphonse",
+    "skill_value": 41
+  },
+  {
+    "name": "gilbert",
+    "skill_value": 74
+  },
+  {
+    "name": "gilbert",
+    "skill_value": 98
   }
 ]

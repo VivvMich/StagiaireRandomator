@@ -6,13 +6,15 @@ use std::io::Write;
 use crate::trainee::Trainee;
 
 
-pub fn add(name: String, skill_value: u8, mut trainees : &mut Vec<Trainee>, mut file: File) -> std::io::Result<()> {
+pub fn add(name: String, skill_value: u8, mut trainees : &mut Vec<Trainee>) -> std::io::Result<()> {
 
     let n = name.clone();
     let t = Trainee{ name, skill_value };
     trainees.push(t);
     let serial = serde_json::to_string_pretty(&trainees).unwrap();
-    file.write_all(serial.as_bytes())?;
+    let mut file = File::create("data.json")?;
+    file.set_len(0)?;
+    file.write_all(serial.as_bytes()).expect("error");
 
     println!("{}", serial);
 
